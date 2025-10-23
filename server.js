@@ -71,3 +71,18 @@ function validateJobs(jobs) {
     return null;
 }
 
+
+//POST /schedule - api route for application
+
+app.post('/schedule', (req,res) => {
+    const {jobs} = req.body
+
+    //validate input
+    const validationError = validateJobs(jobs)
+    if(validationError){
+        return res.status(400).json({
+            error: 'validation failed',
+            details: validationError
+        })
+    }
+})
