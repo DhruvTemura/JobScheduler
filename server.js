@@ -37,7 +37,7 @@ function validateJobs(jobs) {
         }
 
         //checking if job_Id is valid no.
-        if(typeof job.job_Id !== 'number' || !Number.isInteger(job.job_id)){
+        if(typeof job.job_id !== 'number' || !Number.isInteger(job.job_id)){
             return  `job ${job.job_Id}: job_Id must be an integer`
         }
 
@@ -58,12 +58,12 @@ function validateJobs(jobs) {
         }
 
         //checking arrivalTime is a valid no.
-        if (typeof job.arrivalTime !== 'number' || !Number.isInteger(job.arrivalTime)){
+        if (typeof job.arrivalTime !== 'number' || !Number.isInteger(job.arrival_Time)){
             return `job ${job.job_id}: arrivalTime must be an integer`
         }
 
         //checking arrivalTime is non -ve
-        if(job.arrivalTime < 0){
+        if(job.arrival_Time < 0){
             return `job ${job.job_id}: arrivalTime must be non-negative`
         }
     }

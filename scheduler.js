@@ -38,7 +38,7 @@ function scheduleJobs(jobs) {
             }
 
             //if same priority, lower job_Id goes first
-            return a.job_Id - b.job_id
+            return a.job_id - b.job_id
         })
 
         //4) pick the 1st job after sorting/
@@ -51,9 +51,9 @@ function scheduleJobs(jobs) {
 
         //add to detailed schedule
         schedule.push({
-            job_Id: jobToExecute.job_id,
+            job_id: jobToExecute.job_id,
             priority: jobToExecute.priority,
-            arrivalTime: jobToExecute.arrival_time,
+            arrival_time: jobToExecute.arrival_time,
             executed_at: currentTime
         })
 
