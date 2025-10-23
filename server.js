@@ -104,3 +104,11 @@ app.post('/schedule', (req,res) => {
         })
     }
 })
+
+//GET /health - basic server check
+app.get('/health', (req,res) => {
+    res.json({
+        status: 'ok',
+        timestamp: new Date().toIsoString()
+    })
+})
