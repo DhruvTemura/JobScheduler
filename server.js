@@ -1,7 +1,7 @@
 //validation and api server
 
 const express = require('express')
-const {scheduleJobs} = require('/scheduler')
+const {scheduleJobs} = require('./scheduler')
 
 const app = express()
 const PORT = process.env.PORT || 3000
@@ -26,7 +26,7 @@ function validateJobs(jobs) {
         const job = jobs[i]
 
         //checking if all fields are present
-        if(!job.hasOwnProperty('job_Id')) {
+        if(!job.hasOwnProperty('job_id')) {
             return `job at index ${i} is missing job_Id`
         }
         if(!job.hasOwnProperty('priority')) {
@@ -37,34 +37,34 @@ function validateJobs(jobs) {
         }
 
         //checking if job_Id is valid no.
-        if(typeof job.job_Id !== 'number' || !Number.isInteger(job.job_Id)){
+        if(typeof job.job_Id !== 'number' || !Number.isInteger(job.job_id)){
             return  `job ${job.job_Id}: job_Id must be an integer`
         }
 
         //checking for duplicate job_ids
-        if(jobIds.has(job.job_Id)){
-            return `duplicate job_Id found: ${job.job_Id}`
+        if(jobIds.has(job.job_id)){
+            return `duplicate job_Id found: ${job.job_id}`
         }
-        jobIds.add(job.job_Id)
+        jobIds.add(job.job_id)
 
         //checking priority is a valid no.
         if (typeof job.priority !== 'number' || !Number.isInteger(job.priority)){
-            return `job ${job.job_Id}: priority must be an integer`
+            return `job ${job.job_id}: priority must be an integer`
         }
 
         //checking arrivalTime is non -ve
         if(job.priority < 0){
-            return `job ${job.job_Id}: priority must be non-negative`
+            return `job ${job.job_id}: priority must be non-negative`
         }
 
         //checking arrivalTime is a valid no.
         if (typeof job.arrivalTime !== 'number' || !Number.isInteger(job.arrivalTime)){
-            return `job ${job.job_Id}: arrivalTime must be an integer`
+            return `job ${job.job_id}: arrivalTime must be an integer`
         }
 
         //checking arrivalTime is non -ve
         if(job.arrivalTime < 0){
-            return `job ${job.job_Id}: arrivalTime must be non-negative`
+            return `job ${job.job_id}: arrivalTime must be non-negative`
         }
     }
 
@@ -93,7 +93,7 @@ app.post('/schedule', (req,res) => {
         //send response
         res.json({
             execution_order: result.execution_order,
-            schedule: result,schedule,
+            schedule: result.schedule,
             total_time: result.total_time
         })
     } catch(error){
@@ -109,7 +109,7 @@ app.post('/schedule', (req,res) => {
 app.get('/health', (req,res) => {
     res.json({
         status: 'ok',
-        timestamp: new Date().toIsoString()
+        timestamp: new Date().toISOString()
     })
 })
 
