@@ -19,5 +19,7 @@ function validateJobs(jobs) {
     if (jobs.length === 0){                 //cheks if array is empty
         return 'jobs array cant be empty'
     }
+
+    const jobIds = new Set()                //checking for duplicates
 }
 
