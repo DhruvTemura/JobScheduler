@@ -85,4 +85,22 @@ app.post('/schedule', (req,res) => {
             details: validationError
         })
     }
+
+    //scheduling
+    try{
+        const result = scheduleJobs(jobs)
+
+        //send response
+        res.json({
+            execution_order: result.execution_order,
+            schedule: result,schedule,
+            total_time: result.total_time
+        })
+    } catch(error){
+        //handling any error
+        res.status(500).json({
+            error: 'scheduling failed',
+            details: error.message
+        })
+    }
 })
