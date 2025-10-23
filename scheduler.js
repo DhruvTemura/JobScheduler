@@ -15,15 +15,15 @@ function scheduleJobs(jobs) {
 
         //1) find jobs that have arrived, but not been executed yet
         const availableJobs = jobs.filter (job => 
-            job.arrivalTime <= currentTime && !executed.has(job.job_Id)
+            job.arrivalTime <= currentTime && !executed.has(job.job_id)
         )
 
         //2) if no jobs available, skip to next arrival time
         if (availableJobs.length === 0) {
             const nextArrival = Math.min(      //find next job that will arrive
                 ...jobs
-                  .filter(job => !executed.has(job.job_Id))
-                  .map(job => job.arrivalTime)
+                  .filter(job => !executed.has(job.job_id))
+                  .map(job => job.arrival_time)
             )
             currentTime = nextArrival
             continue;                       //going back to while loop
@@ -38,22 +38,22 @@ function scheduleJobs(jobs) {
             }
 
             //if same priority, lower job_Id goes first
-            return a.job_Id - b.job_Id
+            return a.job_Id - b.job_id
         })
 
         //4) pick the 1st job after sorting/
         const jobToExecute = availableJobs[0]
 
         //5) execute it
-        executed.add(jobToExecute.job_Id)
-        executionOrder.push(jobToExecute.job_Id)
+        executed.add(jobToExecute.job_id)
+        executionOrder.push(jobToExecute.job_id)
 
 
         //add to detailed schedule
         schedule.push({
-            job_Id: jobToExecute.job_Id,
+            job_Id: jobToExecute.job_id,
             priority: jobToExecute.priority,
-            arrivalTime: jobToExecute.arrivalTime,
+            arrivalTime: jobToExecute.arrival_time,
             executed_at: currentTime
         })
 
