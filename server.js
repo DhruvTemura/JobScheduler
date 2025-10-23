@@ -40,6 +40,12 @@ function validateJobs(jobs) {
         if(typeof job.job_Id !== 'number' || !Number.isInteger(job.job_Id)){
             return  `job ${job.job_Id}: job_Id must be an integer`
         }
+
+        //checking for duplicate job_ids
+        if(jobIds.has(job.job_Id)){
+            return `duplicate job_Id found: ${job.job_Id}`
+        }
+        jobIds.add(job.job_Id)
     }
 }
 
