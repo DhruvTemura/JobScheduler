@@ -46,6 +46,28 @@ function validateJobs(jobs) {
             return `duplicate job_Id found: ${job.job_Id}`
         }
         jobIds.add(job.job_Id)
+
+        //checking priority is a valid no.
+        if (typeof job.priority !== 'number' || !Number.isInteger(job.priority)){
+            return `job ${job.job_Id}: priority must be an integer`
+        }
+
+        //checking arrivalTime is non -ve
+        if(job.priority < 0){
+            return `job ${job.job_Id}: priority must be non-negative`
+        }
+
+        //checking arrivalTime is a valid no.
+        if (typeof job.arrivalTime !== 'number' || !Number.isInteger(job.arrivalTime)){
+            return `job ${job.job_Id}: arrivalTime must be an integer`
+        }
+
+        //checking arrivalTime is non -ve
+        if(job.arrivalTime < 0){
+            return `job ${job.job_Id}: arrivalTime must be non-negative`
+        }
     }
+
+    return null;
 }
 
