@@ -112,3 +112,8 @@ app.get('/health', (req,res) => {
         timestamp: new Date().toIsoString()
     })
 })
+
+//server start
+app.listen(PORT, () => {
+    console.log(`job scheduler running on port ${PORT}`)
+})
