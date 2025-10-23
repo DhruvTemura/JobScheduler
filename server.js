@@ -29,11 +29,16 @@ function validateJobs(jobs) {
         if(!job.hasOwnProperty('job_Id')) {
             return `job at index ${i} is missing job_Id`
         }
-        if (!job.hasOwnProperty('priority')) {
+        if(!job.hasOwnProperty('priority')) {
             return `Job at index ${i} is missing priority`;
         }   
-        if (!job.hasOwnProperty('arrival_time')) {
+        if(!job.hasOwnProperty('arrival_time')) {
             return `Job at index ${i} is missing arrival_time`;
+        }
+
+        //checking if job_Id is valid no.
+        if(typeof job.job_Id !== 'number' || !Number.isInteger(job.job_Id)){
+            return  `job ${job.job_Id}: job_Id must be an integer`
         }
     }
 }
