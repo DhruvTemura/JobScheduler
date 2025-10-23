@@ -27,7 +27,7 @@ function validateJobs(jobs) {
 
         //checking if all fields are present
         if(!job.hasOwnProperty('job_id')) {
-            return `job at index ${i} is missing job_Id`
+            return `job at index ${i} is missing job_id`
         }
         if(!job.hasOwnProperty('priority')) {
             return `Job at index ${i} is missing priority`;
@@ -36,14 +36,14 @@ function validateJobs(jobs) {
             return `Job at index ${i} is missing arrival_time`;
         }
 
-        //checking if job_Id is valid no.
+        //checking if job_id is valid no.
         if(typeof job.job_id !== 'number' || !Number.isInteger(job.job_id)){
-            return  `job ${job.job_Id}: job_Id must be an integer`
+            return  `job ${job.job_id}: job_id must be an integer`
         }
 
         //checking for duplicate job_ids
         if(jobIds.has(job.job_id)){
-            return `duplicate job_Id found: ${job.job_id}`
+            return `duplicate job_id found: ${job.job_id}`
         }
         jobIds.add(job.job_id)
 
@@ -52,19 +52,19 @@ function validateJobs(jobs) {
             return `job ${job.job_id}: priority must be an integer`
         }
 
-        //checking arrivalTime is non -ve
+        //checking arrival_time is non -ve
         if(job.priority < 0){
             return `job ${job.job_id}: priority must be non-negative`
         }
 
-        //checking arrivalTime is a valid no.
-        if (typeof job.arrivalTime !== 'number' || !Number.isInteger(job.arrival_Time)){
-            return `job ${job.job_id}: arrivalTime must be an integer`
+        //checking arrival_time is a valid no.
+        if (typeof job.arrival_time !== 'number' || !Number.isInteger(job.arrival_Time)){
+            return `job ${job.job_id}: arrival_time must be an integer`
         }
 
-        //checking arrivalTime is non -ve
+        //checking arrival_time is non -ve
         if(job.arrival_Time < 0){
-            return `job ${job.job_id}: arrivalTime must be non-negative`
+            return `job ${job.job_id}: arrival_time must be non-negative`
         }
     }
 
