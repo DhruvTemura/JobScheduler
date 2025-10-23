@@ -15,7 +15,7 @@ function scheduleJobs(jobs) {
 
         //1) find jobs that have arrived, but not been executed yet
         const availableJobs = jobs.filter (job => 
-            job.arrivalTime <= currentTime && !executed.has(job.job_id)
+            job.arrival_time <= currentTime && !executed.has(job.job_id)
         )
 
         //2) if no jobs available, skip to next arrival time
