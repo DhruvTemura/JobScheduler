@@ -21,5 +21,20 @@ function validateJobs(jobs) {
     }
 
     const jobIds = new Set()                //checking for duplicates
+
+    for (let i = 0; i<jobs.length; i++){
+        const job = jobs[i]
+
+        //checking if all fields are present
+        if(!job.hasOwnProperty('job_Id')) {
+            return `job at index ${i} is missing job_Id`
+        }
+        if (!job.hasOwnProperty('priority')) {
+            return `Job at index ${i} is missing priority`;
+        }   
+        if (!job.hasOwnProperty('arrival_time')) {
+            return `Job at index ${i} is missing arrival_time`;
+        }
+    }
 }
 
