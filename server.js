@@ -108,7 +108,7 @@ app.post('/schedule', (req,res) => {
 //GET /health - basic server check
 app.get('/health', (req,res) => {
     res.json({
-        status: 'ok',
+        status: 'ok - job scheduler',
         timestamp: new Date().toISOString()
     })
 })
